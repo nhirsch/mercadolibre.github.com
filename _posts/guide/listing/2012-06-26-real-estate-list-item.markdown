@@ -23,13 +23,13 @@ Table of contents:
 
 About MercadoLibre's APIs. REST & JSON 		{#about}
 --------------------------------------
-We have developed our APIs based on a [REST architecture](http://en.wikipedia.org/wiki/Representational_state_transfer) via HTTP requests in a JSON format.
+We have developed our APIs based on a <a href="http://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank"> REST architecture</a> via HTTP requests in a <a href="http://en.wikipedia.org/wiki/Json" target="_blank">JSON format</a>.
 
 Available REST operations for our APIs are: GET, POST, PUT & DELETE.
 
 Any REST Client can be used to send a request to a MercadoLibre API.
 
-Requests must be sent to a specific URL and contain certain headers (depending on the API). A message in a [JSON format](http://en.wikipedia.org/wiki/Json) must be sent in the request body (except on GET requests).
+Requests must be sent to a specific URL and contain certain headers (depending on the API). A message in a JSON format must be sent in the request body (except on GET requests).
 
 **If you were to receive an error status code on a response when communicating with our APIs, in most cases you will be able to determine the cause of the error by looking at the response body. In addition to the response status code, the response body will also contain detailed information regarding the error and will most likely help you understand how to solve different issues.**
 
@@ -38,7 +38,7 @@ Sign up 	{#signup}
 -------
 The first step to list a real estate property, you must sign up to obtain a MercadoLibre user in the country you will be operating in. To accomplish this go to the following URL:
 
-[http://www.mercadolibre.com](http://www.mercadolibre.com)
+<a href="http://www.mercadolibre.com" target="_blank">http://www.mercadolibre.com</a>
 
 Once there, click on the country you want to operate in and then click on the "Regístrate" button, as shown on figure 1.
 
@@ -53,7 +53,7 @@ Complete the required additional information 	{#additionalinfo}
 
 Make your user available for listing using MercadoLibre's APIs by completing some additional information (documentation, location, etc.). To accomplish this go to the following URL:
 
-[http://www.mercadolibre.com](http://www.mercadolibre.com)
+<a href="http://www.mercadolibre.com" target="_blank">http://www.mercadolibre.com</a>
 
 Once there, click on the country you have signed up in and click on the "Vender" button, as shown on figure 2.
 
@@ -109,7 +109,7 @@ Create your MercadoLibre APP 	{#createapp}
 ----------------------------
 In order to list using MercadoLibre's APIs, you must first create an APP within MercadoLibre. To accomplish this go to the following URL:
 
-[http://applications.mercadolibre.com.ar](http://applications.mercadolibre.com.ar)
+<a href="http://applications.mercadolibre.com.ar" target="_blank">http://applications.mercadolibre.com.ar</a>
 (if you are accesing with a user belonging to another country other than Argentina, please change the ".com.ar" to your corresponding country extension).
 
 Log in with your username and password and click on the "Create new application", as shown on figure 6.
@@ -117,7 +117,7 @@ Log in with your username and password and click on the "Create new application"
 ![Create new app](/images/new-realestate-6.png){:style="width:700px;"}
 *<center>figure 6</center>*
 
-If your APP will list properties **only on behalf your registered user**, then complete the fields in the form, checking both "read" and "write" scopes and click on the "Create application" button (you can complete the "Callback URL" with any data, it won't be used). However, **if you want your APP to list properties on behalf several users**, then at this step you must complete the fields in the form, checking the "read", "write" and "offline_access" scopes, and in the Callback URL will have to be completed with a URL to which users will be redirected right after granting permissions to your APP (explained later on in the [Authenticate section](#authenticate).
+If your APP will list properties **only on behalf your registered user**, then complete the fields in the form, checking both "read" and "write" scopes and click on the "Create application" button (you can complete the "Callback URL" with any data, it won't be used). However, **if you want your APP to list properties on behalf other users**, then at this step you must complete the fields in the form, checking the "read", "write" and "offline_access" scopes, and in the Callback URL will have to be completed with a URL to which users will be redirected right after granting permissions to your APP, explained further ahead in the [Authenticate section](#authenticate).
 
 If your app has been successfully created, you should be now seeing all of the app's details on screen, as shown on figure 7.
 
@@ -129,15 +129,15 @@ The most important fields you will be using along this listing steps are the *Cl
 
 Authenticate	{#authenticate}
 ------------
-MercadoLibre's APIs work with the [OAuth authentication protocol](http://en.wikipedia.org/wiki/Oauth).
+MercadoLibre's APIs work with the <a href="http://en.wikipedia.org/wiki/Oauth" target="_blank">OAuth authentication protocol</a>.
 
 There are certain actions that require you to identify as a MercadoLibre user (ie: listing a real estate property). To successfully accomplish this actions, you must get an access token that will allow you to identify your user when interacting with the APIs, for a determined amount of time (after which you will have to get a new access token).
 
 ### Getting an access token for your registered user ### {#accesstokenregistereduser}
 
-If your APP will list properties **only on behalf your registered user**, then follow the following steps to get an access token. However, **if you want your APP to list properties on behalf several users**, then follow the steps in the [Getting an access token for several users section](#accesstokenseveralusers).
+If your APP will list properties **only on behalf your registered user**, then follow the following steps to get an access token. However, **if you want your APP to list properties on behalf other users**, then follow the steps in the [Getting an access token for other users section](#accesstokenotherusers).
 
-To get an access token you have to send a POST request to the following URL:
+To get an access token you must send a POST request to the following URL:
 
 <pre class="terminal">
 https://api.mercadolibre.com/oauth/token?grant_type=client_credentials&client_id=YOUR_CLIENT_ID&client_secret=YOUR_SECRET_KEY
@@ -167,11 +167,11 @@ You will receive a response body in a JSON format with the following layout:
 *YOUR_NEW_ACCESS_TOKEN* is now the access token required to interact with the APIs to list a real estate property. Keep in mind that this token will expire after the "expires_in" amount of seconds. Once expired your access token will no longer be valid and you will have to send a new request to the OAuth API to get a new access token.
 
 
-### Getting an access token for several users ### {#accesstokenseveralusers}
+### Getting an access token for other users ### {#accesstokenotherusers}
 
-If your APP will list properties **on behalf several users**, then follow the following steps to get an access token. However, **if you want your APP to list properties only on behalf your registered user**, then follow the steps in the [Getting an access token for your registered user section](#accesstokenregistereduser).
+If your APP will list properties **on behalf other users**, then follow the following steps to get an access token. However, **if you want your APP to list properties only on behalf your registered user**, then follow the steps in the previous [Getting an access token for your registered user section](#accesstokenregistereduser).
 
-Users on whose behalf you wish to list properties will have to grant permissions to allow your APP do so. This permission granting will only be needed once per user. To accomplish this, access the following URL:
+Users on whose behalf you wish to list properties will have to grant permissions to allow your APP do so. This permission granting will only be needed once per user. To accomplish this, the user who wants to grant this permission must access the following URL:
 
 <pre class="terminal">
  https://auth.mercadolibre.com.ar/authorization?response_type=code&client_id=YOUR_CLIENT_ID
@@ -181,12 +181,12 @@ Users on whose behalf you wish to list properties will have to grant permissions
 
 Note: if you are accesing with a user belonging to another country other than Argentina, please change the ".com.ar" to your corresponding country extension.
 
-Once there, the user will have to grant permissions to your APP, as shown on figure 8.
+Once there, the user will have to login and grant permissions to your APP, as shown on figure 8.
 
 ![Grant](/images/new-realestate-8.png){:style="width:700px;"}
 *<center>figure 8</center>*
 
-Once the user grants permissions to your APP, it will be automatically redirected to the URL set up in the "Callback URL" when creating your APP (you can edit your APPs settings at any time in the same admin used for creating it), and when redirecting will also add a *CODE*. If your "Callback URL" was, for example, https://www.mydomain.com/mercadolibre.php, then the user will be redirected to:
+Once the user grants permissions to your APP, it will be automatically redirected to the URL previously set up in the "Callback URL" when creating your APP (you can edit your APPs settings at any time in the same admin used for creating it), and this redirecting will also add a *CODE* to the URL. For instance, if your "Callback URL" was https://www.mydomain.com/mercadolibre.php, then the user will be redirected to:
 
 <pre class="terminal">
  https://www.mydomain.com/mercadolibre.php?code=YOUR_SECRET_CODE
@@ -220,7 +220,7 @@ You will receive a response body in a JSON format with the following layout:
 }
 {% endhighlight %}
 
-*YOUR_NEW_ACCESS_TOKEN* is now the access token required to interact with the APIs to list a real estate property on behalf another user. Keep in mind that this token will expire after the "expires_in" amount of seconds. Once expired your access token will no longer be valid and you will have to get a new access token. To obtain from the second access token on, you will need *YOUR_REFRESH_TOKEN* and will have to send a POST request to the following URL:
+*YOUR_NEW_ACCESS_TOKEN* is now the access token required to interact with the APIs to list a real estate property on behalf the user who just granted permissions to your APP. Keep in mind that this token will expire after the "expires_in" amount of seconds. Once expired your access token will no longer be valid and you will have to get a new access token. To obtain from the second access token on, you will need *YOUR_REFRESH_TOKEN* and will have to send a POST request to the following URL:
 
 <pre class="terminal">
  https://api.mercadolibre.com/oauth/token?grant_type=refresh_token&client_id=YOUR_CLIENT_ID&client_secret=YOUR_SECRET_KEY&refresh_token=YOUR_REFRESH_TOKEN
@@ -283,15 +283,15 @@ If the picture was sucessfully uploaded you will receive a JSON response body, w
 
 In this step you will have to choose the category in which your property will be listed. First, determine the "SITE_ID" that corresponds to the country your user belongs to. To accomplish this go to the following URL:
 
-[https://api.mercadolibre.com/sites](https://api.mercadolibre.com/sites)
+<a href="https://api.mercadolibre.com/sites" target="_blank">https://api.mercadolibre.com/sites</a>
 
 Once there you will be able to determine your SITE_ID, which is the "id" for your corresponding country.
 
 Now that you have your SITE_ID, you can now access the following URL:
 
-[https://api.mercadolibre.com/categories/SITE_ID1459](https://api.mercadolibre.com/categories/SITE_ID1459)
+**https://api.mercadolibre.com/categories/SITE_ID1459**
 
-If your user belongs, for example, to Argentina, then the URL would be: https://api.mercadolibre.com/categories/MLA1459
+If your user belongs, for example, to Argentina, then the URL would be: <a href="https://api.mercadolibre.com/categories/MLA1459" target="_blank">https://api.mercadolibre.com/categories/MLA1459</a>
 
 Once there, browse within the "children categories" element, according to the publication category you are interested in (you can do this by clicking the "id") <u>until you reach a leaf category</u>. You will know when you have reached a leaf category when you reach a category that has an empty "children_categories" array.
 
@@ -302,9 +302,9 @@ Save this Category ID, since you will be needing it later on, when putting toget
 
 When listing a property, its attributes will vary according to the chosen category. Now that you have your Category ID, you can see it's attributes by accessing the following URL:
 
-[https://api.mercadolibre.com/categories/SITE_IDCATEGORY_ID/attributes](https://api.mercadolibre.com/categories/SITE_IDCATEGORY_ID/attributes)
+**https://api.mercadolibre.com/categories/SITE_IDCATEGORY_ID/attributes**
 
-If your user belongs, for example, to Argentina, and the chosen category was 1467, then the URL would be: https://api.mercadolibre.com/categories/MLA1467/attributes
+If your user belongs, for example, to Argentina, and the chosen category was 1467, then the URL would be: <a href="https://api.mercadolibre.com/categories/MLA1467/attributes" target="_blank">https://api.mercadolibre.com/categories/MLA1467/attributes</a>
 
 Once there, you will get a JSON response with as many elements as the amount of attributes belonging to the chosen category. For each attribute you get an id, type, tags and possible values. Consider the following:
 
@@ -321,7 +321,7 @@ For each attribute you choose to publish, save its Attribute ID and its value id
 
 Before putting together all of the gathered information so far, you will have to determine the property location, which includes state, city and in most cases neighborhood as well. To accomplish this access the following URL:
 
-[https://api.mercadolibre.com/classified_locations/countries](https://api.mercadolibre.com/classified_locations/countries)
+<a href="https://api.mercadolibre.com/classified_locations/countries" target="_blank">https://api.mercadolibre.com/classified_locations/countries</a>
 
 Once there click on the country id your user belongs to and you will be redirected to a new page where you will be able to browse through the states of the selected country. By clicking the State ID you will be able to browse it's cities and the same applies for the neighborhoods. <u>You only need to send the leaf location id when publishing a property.</u> This means that sending only the Neighborhood ID is enough for our API to complete with the corresponding State and City IDs. If the chosen city does not have any neighborhood, then you will only need to send the City ID. Sending either the Neighborhood ID or the City ID is mandatory. If you were to send only a State ID, our API will not allow you to list the property.
 
@@ -466,7 +466,7 @@ Modify, pause or finalize your property publication {#modify}
 
 You can use our Items API to visualize the details of a property, by accessing the following URL:
 
-[https://api.mercadolibre.com/items/ITEM_ID](https://api.mercadolibre.com/items/ITEM_ID)
+**https://api.mercadolibre.com/items/ITEM_ID**
 
 Example: https://api.mercadolibre.com/items/MLA12345678
 
